@@ -95,20 +95,23 @@
 
   <script>
     const questions = [
-      {
-        q: "<video width='100%' height='200' controls style='border-radius:12px;'><source src='https://raw.githubusercontent.com/USERNAME/REPO/main/springday.mp4' type='video/mp4'>متصفحك لا يدعم تشغيل الفيديو.</video><br>ما اسم هذه الأغنية؟",
-        choices: ["DNA", "Spring Day", "Boy With Luv", "Fake Love"],
-        answer: 1
-      },
-      { q: "أي عضو يُعرف بـ 'Worldwide Handsome'؟", choices: ["جايهوب", "جين", "تايهيونغ", "شوقا"], answer: 1 },
-      { q: "ما اسم أول أغنية ترسم بها بانقتان؟", choices: ["DNA", "Boy With Luv", "No More Dream", "Fake Love"], answer: 2 },
-      { q: "من العضو الذي يحب النوم كثيرًا؟", choices: ["شوقا", "جيمين", "جين", "آر إم"], answer: 0 },
-      { q: "ما اللون المفضل عند ڤي؟", choices: ["أحمر", "أخضر", "أزرق", "رمادي"], answer: 2 },
-      { q: "من قال: 'أنا لست وسيم عالمي، أنا وسيمك الشخصي؟'", choices: ["جين", "شوقا", "جايهوب", "جيمين"], answer: 0 },
+      { q: '<img src="https://raw.githubusercontent.com/Galaxystar03/BTS-Quiz/main/Picstaygold.png" width="100%" style="border-radius:12px;"><br>ما اسم هذه الأغنية؟', type: "text", correctAnswer: "stay gold"},
+      { q: '<img src="https://raw.githubusercontent.com/Galaxystar03/BTS-Quiz/main/Picspringday.png" width="100%" style="border-radius:12px;"><br>ما اسم هذه الأغنية؟', type: "text", correctAnswer: "spring day"},
+      { q: '<img src="https://raw.githubusercontent.com/Galaxystar03/BTS-Quiz/main/Picbtsworld.png" width="100%" style="border-radius:12px;"><br>ما اسم هذه الأغنية؟', type: "text", correctAnswer: "bts world"},
+      { q: '<img src="https://raw.githubusercontent.com/Galaxystar03/BTS-Quiz/main/Picyoungforever.png" width="100%" style="border-radius:12px;"><br>ما اسم هذه الأغنية؟', type: "text", correctAnswer: "young forever"},
+      { q: '<img src="https://raw.githubusercontent.com/Galaxystar03/BTS-Quiz/main/Picforyou.png" width="100%" style="border-radius:12px;"><br>ما اسم هذه الأغنية؟', type: "text", correctAnswer: "for you"},
+
+      { q: '<video width="100%" style="border-radius:12px;" controls><source src="https://raw.githubusercontent.com/Galaxystar03/BTS-Quiz/main/SongPaldogangsan.mp4" type="video/mp4">متصفحك لا يدعم تشغيل الفيديو.</video><br>ما اسم هذه الأغنية؟', type: "text", correctAnswer: "paldogangsan" },
+      { q: '<video width="100%" style="border-radius:12px;" controls><source src="https://raw.githubusercontent.com/Galaxystar03/BTS-Quiz/main/SongHiphopphile.mp4" type="video/mp4">متصفحك لا يدعم تشغيل الفيديو.</video><br>ما اسم هذه الأغنية؟', type: "text", correctAnswer: "hip hop phile" },
+      { q: '<video width="100%" style="border-radius:12px;" controls><source src="https://raw.githubusercontent.com/Galaxystar03/BTS-Quiz/main/SongIneedu.mp4" type="video/mp4">متصفحك لا يدعم تشغيل الفيديو.</video><br>ما اسم هذه الأغنية؟', type: "text", correctAnswer: "i need u" },
+      { q: '<video width="100%" style="border-radius:12px;" controls><source src="https://raw.githubusercontent.com/Galaxystar03/BTS-Quiz/main/SongPersona.mp4" type="video/mp4">متصفحك لا يدعم تشغيل الفيديو.</video><br>ما اسم هذه الأغنية؟', type: "text", correctAnswer: "persona" },
+      { q: '<video width="100%" style="border-radius:12px;" controls><source src="https://raw.githubusercontent.com/Galaxystar03/BTS-Quiz/main/SongJoke.mp4" type="video/mp4">متصفحك لا يدعم تشغيل الفيديو.</video><br>ما اسم هذه الأغنية؟', type: "text", correctAnswer: "joke" },
+
+      { q: "ما هو أول ألبوم كامل أصدرته الفرقة؟", choices: ["Wings", "Dark & Wild", "Skool Luv Affair", "O!RUL8,2?"], answer: 1 },
       { q: "أي فيديو كليب يظهر فيه قطار؟", choices: ["Spring Day", "DNA", "Mic Drop", "Fire"], answer: 0 },
-      { q: "من أكثر عضو يخاف من الأشباح؟", choices: ["تايهيونغ", "جايهوب", "جونغكوك", "جيمين"], answer: 1 },
-      { q: "كم عدد أعضاء BTS؟", choices: ["6", "7", "8", "5"], answer: 1 },
-      { q: "ما اسم الفاندوم الرسمي لفرقة BTS؟", choices: ["Blink", "Stay", "Army", "Moa"], answer: 2 }
+      { q: "أي عضو كان يتدرب ليكون عازف ساكسفون قبل انضمامه لبانقتان؟", choices: ["تايهيونغ", "جايهوب", "جونغكوك", "جيمين"], answer: 0 },
+      { q: "ما هو أول تعاون عالمي رسمي قامت به الفرقة مع فنان اجنبي؟", choices: ["Nicki Minaj", "Halsey", "Lauv", "Steve Aoki"], answer: 3 },
+      { q: "من ضيف شرف كيان الحلقة الخامسة؟", choices: ["جيم كاف", "جيم ميم", "تاء كاف", "نون جيم"], answer: 2 }
     ];
 
     let current = 0;
@@ -133,12 +136,55 @@
         return;
       }
       const q = questions[current];
-      document.getElementById("quiz").innerHTML = `
-        <div class="question">${current + 1}. ${q.q}</div>
-        <div class="choices">
-          ${q.choices.map((c, i) => `<button onclick="answer(${i})">${c}</button>`).join("")}
-        </div>
-      `;
+
+      if (q.type === "text") {
+        // سؤال نصي
+        document.getElementById("quiz").innerHTML = `
+          <div class="question">${current + 1}. ${q.q}</div>
+          <input type="text" id="text-answer" placeholder="اكتب إجابتك هنا" />
+          <button onclick="submitTextAnswer()" style="
+            background: #c79fe9; 
+            color: white; 
+            padding: 12px 20px; 
+            border: none; 
+            border-radius: 14px; 
+            cursor: pointer; 
+            font-weight: bold;
+            width: 100%;
+          ">إرسال</button>
+        `;
+      } else {
+        // سؤال اختيارات
+        document.getElementById("quiz").innerHTML = `
+          <div class="question">${current + 1}. ${q.q}</div>
+          <div class="choices">
+            ${q.choices.map((c, i) => `<button onclick="answer(${i})">${c}</button>`).join("")}
+          </div>
+        `;
+      }
+    }
+
+    function submitTextAnswer() {
+      const input = document.getElementById("text-answer").value.trim();
+      const q = questions[current];
+
+      if (input === "") {
+        alert("يرجى إدخال إجابة!");
+        return;
+      }
+
+      const isCorrect = input.toLowerCase() === q.correctAnswer.toLowerCase();
+
+      answers.push({
+        question: q.q,
+        selected: input,
+        correct: q.correctAnswer
+      });
+
+      if (isCorrect) score++;
+
+      current++;
+      showQuestion();
     }
 
     function answer(i) {
@@ -154,20 +200,32 @@
 
     function showResults() {
       let rank = "";
-      if (score <= 3) rank = "أرمي مبتدئ 👶";
-      else if (score <= 7) rank = "أرمي رائع ✨";
+      if (score <= 5) rank = "أرمي مبتدئ 👶";
+      else if (score <= 10) rank = "أرمي رائع ✨";
       else rank = "أرمي مخضرم 💜";
 
       document.getElementById("quiz").style.display = "none";
       document.getElementById("result").style.display = "block";
       document.getElementById("result").innerHTML = `
-        <strong>${username}</strong> نتيجتك: ${score}/10<br><strong>${rank}</strong>
+        <strong>${username}</strong> نتيجتك: ${score}/${questions.length}<br><strong>${rank}</strong>
       `;
 
       let summary = "<h3>تفاصيل الإجابات:</h3><ul>";
       answers.forEach((ans, index) => {
-        const isCorrect = ans.selected === ans.correct;
-        summary += `<li>${index + 1}. ${questions[index].q}<br>✔️ الإجابة الصحيحة: ${questions[index].choices[ans.correct]}<br>👉 إجابتك: ${questions[index].choices[ans.selected]} ${isCorrect ? "✅" : "❌"}</li><br>`;
+        const q = questions[index];
+        let correctAnswerText = q.correctAnswer || (q.choices ? q.choices[q.answer] : "");
+        let userAnswerText = ans.selected;
+
+        let isCorrect = false;
+        if (q.type === "text") {
+          isCorrect = userAnswerText.toLowerCase() === correctAnswerText.toLowerCase();
+        } else {
+          isCorrect = ans.selected === q.answer;
+          userAnswerText = q.choices[ans.selected];
+          correctAnswerText = q.choices[q.answer];
+        }
+
+        summary += `<li>${index + 1}. ${q.q}<br>✔️ الإجابة الصحيحة: ${correctAnswerText}<br>👉 إجابتك: ${userAnswerText} ${isCorrect ? "✅" : "❌"}</li><br>`;
       });
       summary += "</ul>";
 
