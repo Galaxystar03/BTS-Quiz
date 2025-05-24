@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>اختبار BTS</title>
-  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -77,23 +76,10 @@
     .btn-start:hover {
       background-color: #a56fd9;
     }
-    .btn-download {
-      background-color: #a56fd9;
-      color: white;
-      padding: 10px 22px;
-      border: none;
-      border-radius: 16px;
-      cursor: pointer;
-      margin-top: 15px;
-      font-size: 1em;
-    }
-    .btn-download:hover {
-      background-color: #874fcf;
-    }
   </style>
 </head>
 <body>
-  <div class="quiz-container" id="result-container">
+  <div class="quiz-container">
     <div id="start-screen">
       <h2>🌸 اختبار BTS 💜</h2>
       <p>اختبر مدى معرفتك بفرقة BTS وأثبت أنك أرمي حقيقي!</p>
@@ -105,12 +91,11 @@
     <div id="quiz" style="display: none;"></div>
     <div id="result"></div>
     <div id="answer-summary"></div>
-    <button id="downloadBtn" class="btn-download" style="display:none;" onclick="downloadResult()">📸 تحميل النتيجة كصورة</button>
   </div>
 
   <script>
     const questions = [
-      { q: "<video width='100%' height='200' controls style='border-radius:12px;'><source src='springday.mp4' type='video/mp4'>متصفحك لا يدعم الفيديو.</video><br>ما اسم هذه الأغنية؟", choices: ["DNA", "Spring day", "Boy With Luv", "Fake Love"], answer: 1 },
+      { q: "<video width='100%' height='200' controls style='border-radius:12px;'><source src='springday.mp4' type='video/mp4'>متصفحك لا يدعم الفيديو.</video><br>ما اسم هذه الأغنية؟", choices: ["DNA", "Spring day", "Boy With Luv", "Fake Love"], answer: 2 },
       { q: "أي عضو يُعرف بـ 'Worldwide Handsome'؟", choices: ["جايهوب", "جين", "تايهيونغ", "شوقا"], answer: 1 },
       { q: "ما اسم أول أغنية ترسم بها بانقتان؟", choices: ["DNA", "Boy With Luv", "No More Dream", "Fake Love"], answer: 2 },
       { q: "من العضو الذي يحب النوم كثيرًا؟", choices: ["شوقا", "جيمين", "جين", "آر إم"], answer: 0 },
@@ -144,12 +129,12 @@
         return;
       }
       const q = questions[current];
-      document.getElementById("quiz").innerHTML = `
+      document.getElementById("quiz").innerHTML = 
         <div class="question">${current + 1}. ${q.q}</div>
         <div class="choices">
-          ${q.choices.map((c, i) => `<button onclick="answer(${i})">${c}</button>`).join("")}
+          ${q.choices.map((c, i) => <button onclick="answer(${i})">${c}</button>).join("")}
         </div>
-      `;
+      ;
     }
 
     function answer(i) {
@@ -171,31 +156,20 @@
 
       document.getElementById("quiz").style.display = "none";
       document.getElementById("result").style.display = "block";
-      document.getElementById("downloadBtn").style.display = "block";
-      document.getElementById("result").innerHTML = `
+      document.getElementById("result").innerHTML = 
         <strong>${username}</strong> نتيجتك: ${score}/10<br><strong>${rank}</strong>
-      `;
+      ;
 
       let summary = "<h3>تفاصيل الإجابات:</h3><ul>";
       answers.forEach((ans, index) => {
         const isCorrect = ans.selected === ans.correct;
-        summary += `<li>${index + 1}. ${ans.question}<br>✔️ الإجابة الصحيحة: ${questions[index].choices[ans.correct]}<br>` +
-                   `👉 إجابتك: ${questions[index].choices[ans.selected]} ${isCorrect ? "✅" : "❌"}</li><br>`;
+        summary += <li>${index + 1}. ${ans.question}<br>✔️ الإجابة الصحيحة: ${questions[index].choices[ans.correct]}<br> +
+                   👉 إجابتك: ${questions[index].choices[ans.selected]} ${isCorrect ? "✅" : "❌"}</li><br>;
       });
       summary += "</ul>";
       const answerDiv = document.getElementById("answer-summary");
       answerDiv.style.display = "block";
       answerDiv.innerHTML = summary;
-    }
-
-    function downloadResult() {
-      const container = document.getElementById("result-container");
-      html2canvas(container).then(canvas => {
-        const link = document.createElement("a");
-        link.download = `${username}_BTS_Quiz_Result.png`;
-        link.href = canvas.toDataURL();
-        link.click();
-      });
     }
   </script>
 </body>
