@@ -120,15 +120,39 @@
     let username = "";
 
     function startQuiz() {
-      username = document.getElementById("username").value.trim();
-      if (username === "") {
-        alert("يرجى إدخال اسمك!");
-        return;
-      }
-      document.getElementById("start-screen").style.display = "none";
-      document.getElementById("quiz").style.display = "block";
-      showQuestion();
-    }
+  username = document.getElementById("username").value.trim();
+
+  if (username === "") {
+    alert("يرجى إدخال اسمك!");
+    return;
+  }
+
+  // إذا كان الاسم "ران" بأي شكل (ران، RAN، Ran...)
+  if (username.toLowerCase() === "ران" || username.toLowerCase() === "ran") {
+    // الانتقال إلى صفحة تهنئة مخصصة
+    document.body.innerHTML = `
+      <div style="
+        display: flex; 
+        justify-content: center; 
+        align-items: center; 
+        height: 100vh; 
+        background-color: #fce4ec; 
+        color: #6a1b9a; 
+        font-family: sans-serif; 
+        text-align: center; 
+        padding: 20px;
+      ">
+        <h1>🎉 مبارك يا ${username}! 🎉<br>أنت الفائز رقم واحد في قلب سمائك 💜</h1>
+      </div>
+    `;
+    return;
+  }
+
+  document.getElementById("start-screen").style.display = "none";
+  document.getElementById("quiz").style.display = "block";
+  showQuestion();
+}
+
 
     function showQuestion() {
       if (current >= questions.length) {
