@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>اختبار BTS</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #d0b2f1, #fbd6f5);
+      color: #333;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .quiz-container {
+      background: #fffafc;
+      border-radius: 25px;
+      padding: 35px;
+      max-width: 700px;
+      width: 90%;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
+      text-align: right;
+    }
+    .question {
+      font-size: 1.4em;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+    .choices button {
+      background: #e6d0f7;
+      border: none;
+      padding: 12px 20px;
+      margin: 6px;
+      border-radius: 14px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s;
+      width: 100%;
+      text-align: right;
+    }
+    .choices button:hover {
+      background: #c79fe9;
+    }
+    #result, #answer-summary {
+      display: none;
+      font-size: 1.1em;
+      margin-top: 20px;
+      text-align: right;
+    }
+    #start-screen {
+      text-align: center;
+    }
+    input[type="text"] {
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid #ccc;
+      width: 80%;
+      margin: 20px 0;
+      direction: rtl;
+      text-align: right;
+    }
+    .btn-start {
+      background-color: #c79fe9;
+      color: white;
+      padding: 14px 28px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 1.1em;
+    }
+    .btn-start:hover {
+      background-color: #a56fd9;
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <div id="start-screen">
+      <h2>🌸 اختبار BTS 💜</h2>
+      <p>اختبر مدى معرفتك بفرقة BTS وأثبت أنك أرمي حقيقي!</p>
+      <input type="text" id="username" placeholder="أدخل اسمك" />
+      <br />
+      <button class="btn-start" onclick="startQuiz()">ابدأ اللعبة</button>
+    </div>
+
+    <div id="quiz" style="display: none;"></div>
+    <div id="result"></div>
+    <div id="answer-summary"></div>
+  </div>
+
+  <script>
+    const questions = [
+      { q: "من القائد الرسمي لفرقة BTS؟", choices: ["جيمين", "آر إم", "شوقا", "جونغكوك"], answer: 1 },
+      { q: "أي عضو يُعرف بـ 'Worldwide Handsome'؟", choices: ["جايهوب", "جين", "تايهيونغ", "شوقا"], answer: 1 },
+      { q: "ما اسم أول أغنية ترسم بها بانقتان؟", choices: ["DNA", "Boy With Luv", "No More Dream", "Fake Love"], answer: 2 },
+      { q: "من العضو الذي يحب النوم كثيرًا؟", choices: ["شوقا", "جيمين", "جين", "آر إم"], answer: 0 },
+      { q: "ما اللون المفضل عند ڤي؟", choices: ["أحمر", "أخضر", "أزرق", "رمادي"], answer: 2 },
+      { q: "من قال: 'أنا لست وسيم عالمي، أنا وسيمك الشخصي؟'", choices: ["جين", "شوقا", "جايهوب", "جيمين"], answer: 0 },
+      { q: "أي فيديو كليب يظهر فيه قطار؟", choices: ["Spring Day", "DNA", "Mic Drop", "Fire"], answer: 0 },
+      { q: "من أكثر عضو يخاف من الأشباح؟", choices: ["تايهيونغ", "جايهوب", "جونغكوك", "جيمين"], answer: 1 },
+      { q: "كم عدد أعضاء BTS؟", choices: ["6", "7", "8", "5"], answer: 1 },
+      { q: "ما اسم الفاندوم الرسمي لفرقة BTS؟", choices: ["Blink", "Stay", "Army", "Moa"], answer: 2 },
+    ];
+
+    let current = 0;
+    let score = 0;
+    let answers = [];
+    let username = "";
+
+    function startQuiz() {
+      username = document.getElementById("username").value.trim();
+      if (username === "") {
+        alert("يرجى إدخال اسمك!");
+        return;
+      }
+      document.getElementById("start-screen").style.display = "none";
+      document.getElementById("quiz").style.display = "block";
+      showQuestion();
+    }
+
+    function showQuestion() {
+      if (current >= questions.length) {
+        showResults();
+        return;
+      }
+      const q = questions[current];
+      document.getElementById("quiz").innerHTML = `
+        <div class="question">${current + 1}. ${q.q}</div>
+        <div class="choices">
+          ${q.choices.map((c, i) => `<button onclick="answer(${i})">${c}</button>`).join("")}
+        </div>
+      `;
+    }
+
+    function answer(i) {
+      answers.push({
+        question: questions[current].q,
+        selected: i,
+        correct: questions[current].answer
+      });
+      if (i === questions[current].answer) score++;
+      current++;
+      showQuestion();
+    }
+
+    function showResults() {
+      let rank = "";
+      if (score <= 3) rank = "أرمي مبتدئ 👶";
+      else if (score <= 7) rank = "أرمي رائع ✨";
+      else rank = "أرمي مخضرم 💜";
+
+      document.getElementById("quiz").style.display = "none";
+      document.getElementById("result").style.display = "block";
+      document.getElementById("result").innerHTML = `
+        <strong>${username}</strong> نتيجتك: ${score}/10<br><strong>${rank}</strong>
+      `;
+
+      let summary = "<h3>تفاصيل الإجابات:</h3><ul>";
+      answers.forEach((ans, index) => {
+        const isCorrect = ans.selected === ans.correct;
+        summary += `<li>${index + 1}. ${ans.question}<br>✔️ الإجابة الصحيحة: ${questions[index].choices[ans.correct]}<br>` +
+                   `👉 إجابتك: ${questions[index].choices[ans.selected]} ${isCorrect ? "✅" : "❌"}</li><br>`;
+      });
+      summary += "</ul>";
+      const answerDiv = document.getElementById("answer-summary");
+      answerDiv.style.display = "block";
+      answerDiv.innerHTML = summary;
+    }
+  </script>
+</body>
+</html>
